@@ -1,6 +1,4 @@
 .venv
 .pipenv
 __pycache__
-.Pipfile
-.Pipfile.lock
 db.sqlite3

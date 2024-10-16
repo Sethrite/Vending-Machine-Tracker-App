@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vending Machine Stock Tracker</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: bisque;
+            color: #333;
+        }
+
+        header {
+            background-color: rgb(120, 198, 146);
+            padding: 20px;
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #599667;
+            padding: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2em;
+            padding: 10px;
+        }
+
+        nav a:hover {
+            background-color: #7db189;
+            border-radius: 5px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 160px); /* Deducting space taken by header, nav, and footer */
+            text-align: center;
+            padding: 30px; /* Added padding for spacing */
+            padding-bottom: 50px; /* Added space at the bottom */
+        }
+
+        .container h1 {
+            color: #425547;
+            margin-bottom: 20px; /* Spacing below the header */
+        }
+
+        .vending-machine {
+            width: 400px; /* Fixed width for the vending machine */
+            height: auto; /* Auto height for responsive design */
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px; /* Space between items */
+            padding: 20px;
+            background-color: rgba(169, 169, 169, 0.5);
+            border: 5px solid black; /* Thicker black border */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin-bottom: 50px; /* Added margin at the bottom of the vending machine */
+        }
+
+        .cell {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        img {
+            max-width: 80%; /* Limit image width */
+            max-height: 70%; /* Limit image height */
+            object-fit: cover;
+            margin-bottom: 5px; /* Spacing below images */
+        }
+
+        .name {
+            font-size: 14px; /* Smaller font size for names */
+            text-align: center;
+        }
+
+        footer {
+            background-color: #599667;
+            text-align: center;
+            padding: 10px;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Vending Machine Stock Tracker
+    </header>
+
+    <nav>
+        <a href="http://127.0.0.1:8000">Home</a>
+        <a href="http://127.0.0.1:8000/User/">User Side</a>
+        <a href="http://127.0.0.1:8000/Manufacturer/">Manufacturer Side</a>
+        <a href="#">Contact Us</a>
+    </nav>
+
+    <div class="container">
+        <h1>Vending Machine Tracker</h1>
+        <div class="vending-machine">
+            <div class="cell"><img src="snack1.jpg" alt="Snack 1"><div class="name">Snack 1</div></div>
+            <div class="cell"><img src="snack2.jpg" alt="Snack 2"><div class="name">Snack 2</div></div>
+            <div class="cell"><img src="snack3.jpg" alt="Snack 3"><div class="name">Snack 3</div></div>
+            <div class="cell"><img src="snack4.jpg" alt="Snack 4"><div class="name">Snack 4</div></div>
+            <div class="cell"><img src="snack5.jpg" alt="Snack 5"><div class="name">Snack 5</div></div>
+            <div class="cell"><img src="snack6.jpg" alt="Snack 6"><div class="name">Snack 6</div></div>
+            <div class="cell"><img src="snack7.jpg" alt="Snack 7"><div class="name">Snack 7</div></div>
+            <div class="cell"><img src="snack8.jpg" alt="Snack 8"><div class="name">Snack 8</div></div>
+            <div class="cell"><img src="snack9.jpg" alt="Snack 9"><div class="name">Snack 9</div></div>
+            <div class="cell"><img src="snack10.jpg" alt="Snack 10"><div class="name">Snack 10</div></div>
+            <div class="cell"><img src="snack11.jpg" alt="Snack 11"><div class="name">Snack 11</div></div>
+            <div class="cell"><img src="snack12.jpg" alt="Snack 12"><div class="name">Snack 12</div></div>
+            <div class="cell"><img src="snack13.jpg" alt="Snack 13"><div class="name">Snack 13</div></div>
+            <div class="cell"><img src="snack14.jpg" alt="Snack 14"><div class="name">Snack 14</div></div>
+            <div class="cell"><img src="snack15.jpg" alt="Snack 15"><div class="name">Snack 15</div></div>
+            <div class="cell"><img src="snack16.jpg" alt="Snack 16"><div class="name">Snack 16</div></div>
+            <div class="cell"><img src="snack17.jpg" alt="Snack 17"><div class="name">Snack 17</div></div>
+            <div class="cell"><img src="snack18.jpg" alt="Snack 18"><div class="name">Snack 18</div></div>
+            <div class="cell"><img src="snack19.jpg" alt="Snack 19"><div class="name">Snack 19</div></div>
+            <div class="cell"><img src="snack20.jpg" alt="Snack 20"><div class="name">Snack 20</div></div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Vending Machine Tracker. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vending Machine Stock Tracker</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: bisque;
+            color: #333;
+        }
+
+        header {
+            background-color: rgb(218, 148, 255);
+            padding: 20px;
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: hsl(277, 100%, 70%);
+            padding: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2em;
+            padding: 10px;
+        }
+
+        nav a:hover {
+            background-color: #d485ff;
+            border-radius: 5px;
+        }
+
+        .container {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .container h1 {
+            color: #4e4255;
+        }
+
+        /* Adjusting spacing between sections */
+        .vending-machine {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px; /* Increased gap between vending machine buttons */
+            margin-top: 50px; /* Added more space above vending machine buttons */
+            justify-content: center; /* Center the vending machine buttons */
+        }
+
+        .vending-machine a {
+            display: block;
+            padding: 30px;
+            background-color: #d485ff;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .vending-machine a:hover {
+            background-color: #c072ff;
+        }
+
+        footer {
+            background-color: #c072ff;
+            text-align: center;
+            padding: 10px;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Vending Machine Stock Tracker
+    </header>
+
+    <nav>
+        <a href="http://127.0.0.1:8000">Home</a>
+        <a href="http://127.0.0.1:8000/User/">User Side</a>
+        <a href="http://127.0.0.1:8000/Manufacturer/">Manufacturer Side</a>
+        <a href="#">Contact Us</a>
+    </nav>
+
+    <div class="container">
+        <h1>Welcome to Vending Machine Stock Tracker</h1>
+        <p>Your one-stop solution for tracking and managing vending machine inventory efficiently.</p>
+
+        <!-- Increased margin above the vending machine buttons -->
+        <div class="vending-machine">
+            <a href="http://127.0.0.1:8000/Manufacturer/VendingMachine1/">Vending Machine 1</a>
+            <a href="http://127.0.0.1:8000/Manufacturer/VendingMachine2/">Vending Machine 2</a>
+            <a href="http://127.0.0.1:8000/Manufacturer/VendingMachine3/">Vending Machine 3</a>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2024 Vending Machine Stock Tracker. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

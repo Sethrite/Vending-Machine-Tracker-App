@@ -51,11 +51,13 @@
 
         .buttons {
             margin-top: 30px;
+            text-align: center;
         }
 
+        /* Add margin between the "Go to" buttons */
         .buttons a {
             display: inline-block;
-            margin: 10px;
+            margin: 0 15px; /* Added space between buttons */
             padding: 15px 30px;
             font-size: 1.2em;
             background-color: rgb(120, 198, 146);
@@ -69,11 +71,13 @@
             background-color: rgb(33, 74, 51);
         }
 
+        /* Adjusting spacing between sections */
         .vending-machine {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 30px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px; /* Increased gap between vending machine buttons */
+            margin-top: 50px; /* Added more space above vending machine buttons */
+            justify-content: center; /* Center the vending machine buttons */
         }
 
         .vending-machine a {
@@ -124,19 +128,11 @@
             <a href="http://127.0.0.1:8000/Manufacturer/">Go to Manufacturer Side</a>
         </div>
 
+        <!-- Increased margin above the vending machine buttons -->
         <div class="vending-machine">
             <a href="http://127.0.0.1:8000/VendingMachine1/">Vending Machine 1</a>
             <a href="http://127.0.0.1:8000/VendingMachine2/">Vending Machine 2</a>
             <a href="http://127.0.0.1:8000/VendingMachine3/">Vending Machine 3</a>
-            <a href="#">Machine 4</a>
-            <a href="#">Machine 5</a>
-            <a href="#">Machine 6</a>
-            <a href="#">Machine 7</a>
-            <a href="#">Machine 8</a>
-            <a href="#">Machine 9</a>
-            <a href="#">Machine 10</a>
-            <a href="#">Machine 11</a>
-            <a href="#">Machine 12</a>
         </div>
 
     </div>

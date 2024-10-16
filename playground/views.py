@@ -12,7 +12,7 @@ def Manufacturer(request):
     return render(request, 'NewManu.html')
 
 def User(request):
-    return render(request, 'NewUser.html')
+    return render(request, 'UpdatedUser.html')
 
 def createVendingMachine(nickname, location):
     pass

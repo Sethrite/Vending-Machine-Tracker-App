@@ -49,28 +49,6 @@
             color: #425547;
         }
 
-        .buttons {
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        /* Add margin between the "Go to" buttons */
-        .buttons a {
-            display: inline-block;
-            margin: 0 15px; /* Added space between buttons */
-            padding: 15px 30px;
-            font-size: 1.2em;
-            background-color: rgb(120, 198, 146);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .buttons a:hover {
-            background-color: rgb(33, 74, 51);
-        }
-
         /* Adjusting spacing between sections */
         .vending-machine {
             display: grid;
@@ -121,18 +99,13 @@
 
     <div class="container">
         <h1>Welcome to Vending Machine Stock Tracker</h1>
-        <p>Your one-stop solution for tracking and managing vending machine inventory efficiently.</p>
-
-        <div class="buttons">
-            <a href="http://127.0.0.1:8000/User/">Go to User Side</a>
-            <a href="http://127.0.0.1:8000/Manufacturer/">Go to Manufacturer Side</a>
-        </div>
+        <p>Your one-stop solution for viewing and checking vending machine items</p>
 
         <!-- Increased margin above the vending machine buttons -->
         <div class="vending-machine">
-            <a href="http://127.0.0.1:8000/VendingMachine1/">Vending Machine 1</a>
-            <a href="http://127.0.0.1:8000/VendingMachine2/">Vending Machine 2</a>
-            <a href="http://127.0.0.1:8000/VendingMachine3/">Vending Machine 3</a>
+            <a href="http://127.0.0.1:8000/User/VendingMachine1/">Vending Machine 1</a>
+            <a href="http://127.0.0.1:8000/User/VendingMachine2/">Vending Machine 2</a>
+            <a href="http://127.0.0.1:8000/User/VendingMachine3/">Vending Machine 3</a>
         </div>
 
     </div>

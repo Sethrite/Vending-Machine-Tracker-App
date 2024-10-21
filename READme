@@ -2,8 +2,8 @@ For all future installations of the repository use the libraries listed:
     pip install pyarduino
     pip install pipenv
     pipenv install django
-    pip install setuptools
-    pipenv install django debug-toolbar
+    python manage.py makemigrations
+    python manage.py migrate
     if that does not work
         where pipenv - put it into path environments
         pipenv lock

@@ -1,0 +1,18 @@
+For all future installations of the repository use the libraries listed:
+    pip install pyarduino
+    pip install pipenv
+    pipenv install django
+    python manage.py makemigrations
+    python manage.py migrate
+    if that does not work
+        where pipenv - put it into path environments
+        pipenv lock
+        pipenv sync
+
+For normal virtual environment:
+    python -m venv venv
+    venv\Scripts\activate
+    Use in powershell if not working - Set-ExecutionPolicy RemoteSigned
+
+Use this to start the virtual environment:
+    python manage.py runserver

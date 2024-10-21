@@ -9,4 +9,6 @@ class VendingMachine(models.Model):
     
 
 class SnackSpot(models.Model):
-    machine = models.ForeignKey(to=VendingMachine,on_delete=models.CASCADE)
+    Machine = models.ForeignKey(to=VendingMachine,on_delete=models.CASCADE)
+    snack = models.CharField(max_length=255, null = True)
+    position = models.TextField()

@@ -6,7 +6,11 @@ class VendingMachine(models.Model):
     
     nickname = models.CharField(max_length=255,null=True)
     location = models.CharField(max_length=255,null=True)
-    
+
 
 class SnackSpot(models.Model):
-    machine = models.ForeignKey(to=VendingMachine,on_delete=models.CASCADE)
+    Machine = models.ForeignKey(to=VendingMachine,on_delete=models.CASCADE)
+    snack = models.CharField(max_length=255, null = True)
+    image = models.ImageField()
+    amount = models.IntegerField()
+    position = models.TextField()

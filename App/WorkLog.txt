@@ -1,3 +1,5 @@
 Used ChatGPT on 10/08/2024 to create the home, user, and manufactuerer webpages with HTML code
 because we are not super familiar with HTML code. The main features needed were the buttons and
 modern designs for the website.
+
+pip install Pillow

@@ -116,6 +116,10 @@
         <a href="#">Contact Us</a>
     </nav>
 
+    {% for snack in snacks %}
+        <div class="cell"><img src= {{snack.image}} alt="Snack 1"><div class="name">{{snack.snack}}</div></div>
+    {% end for %}
+
     <div class="container">
         <h1>Vending Machine Tracker</h1>
         <div class="vending-machine">

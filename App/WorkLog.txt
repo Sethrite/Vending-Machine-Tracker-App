@@ -1,9 +1,9 @@
-Used ChatGPT on 10/08/2024 to create the home, user, and manufactuerer webpages with HTML code
+Zach used ChatGPT on 10/08/2024 to help create the home, user, and manufactuerer webpages with HTML code
 because we are not super familiar with HTML code. The main features needed were the buttons and
 modern designs for the website.
 
 
-Used ChatGPT on 10/11/2024 to create the vending machine on the website for the user and manufactuerer
+Zach used ChatGPT on 10/11/2024 to help create the vending machine on the website for the user and manufactuerer
 code and then we also changed the formating of the pages to seem similar to the sections they are under,
 like the user's color of the page being green and the vending machine page being green.
 

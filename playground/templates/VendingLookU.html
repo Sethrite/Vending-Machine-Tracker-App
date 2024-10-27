@@ -10,6 +10,7 @@
             font-family: Arial, sans-serif;
             background-color: bisque;
             color: #333;
+            overflow-x: hidden; /* Prevent horizontal overflow */
         }
 
         header {
@@ -43,30 +44,39 @@
         .container {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            height: calc(100vh - 160px); /* Deducting space taken by header, nav, and footer */
-            text-align: center;
-            padding: 30px; /* Added padding for spacing */
-            padding-bottom: 50px; /* Added space at the bottom */
+            padding: 30px;
+            padding-top: 50px; /* Added spacing above the heading */
         }
 
         .container h1 {
             color: #425547;
-            margin-bottom: 20px; /* Spacing below the header */
+            font-size: 2.5em; /* Increased font size for the heading */
+            margin-bottom: 20px; /* Increased spacing below the header */
+        }
+
+        .location {
+            font-size: 1.5em; /* Increased font size for better visibility */
+            color: #3e8e41; /* Color that matches the theme */
+            margin-top: -10px; /* Moved the location text higher */
+            margin-bottom: 20px; /* Spacing below the location text */
         }
 
         .vending-machine {
             width: 400px; /* Fixed width for the vending machine */
-            height: auto; /* Auto height for responsive design */
+            height: 800px; /* Fixed height for the vending machine */
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr); /* 5 columns */
+            grid-template-rows: repeat(4, auto); /* 4 rows with auto height */
             gap: 10px; /* Space between items */
             padding: 20px;
             background-color: rgba(169, 169, 169, 0.5);
-            border: 5px solid black; /* Thicker black border */
+            border: 10px solid black; /* Thicker black border */
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             margin-bottom: 50px; /* Added margin at the bottom of the vending machine */
+            position: relative; /* Positioning context for shapes */
+            overflow-y: visible; /* Prevents internal scrolling */
+            margin-top: 20px; /* Added space between location text and vending machine */
         }
 
         .cell {
@@ -78,10 +88,12 @@
             justify-content: center;
             padding: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden; /* Ensure images stay inside boundaries */
+            height: 150px; /* Increased height for better spacing */
         }
 
         img {
-            max-width: 80%; /* Limit image width */
+            max-width: 90%; /* Ensure image does not exceed cell width */
             max-height: 70%; /* Limit image height */
             object-fit: cover;
             margin-bottom: 5px; /* Spacing below images */
@@ -90,6 +102,17 @@
         .name {
             font-size: 14px; /* Smaller font size for names */
             text-align: center;
+            margin-bottom: 5px; /* Added margin to separate name and amount */
+        }
+
+        .amount {
+            font-size: 16px; /* Slightly larger font size for amount */
+            text-align: center;
+            display: flex;
+            align-items: center; /* Center align vertically */
+            justify-content: center; /* Center align horizontally */
+            height: 20px; /* Fixed height for uniformity */
+            width: 100%; /* Full width */
         }
 
         footer {
@@ -97,11 +120,28 @@
             text-align: center;
             padding: 10px;
             color: #fff;
-            position: fixed;
+            width: 100%; /* Ensure footer spans entire x-axis */
+            position: relative; /* Changed to relative positioning */
             bottom: 0;
-            width: 100%;
+        }
+
+        /* Added geometric shapes to represent vending machine */
+        .vending-machine::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: calc(100% + 40px); /* Adjust width for outline */
+            height: calc(100% + 40px); /* Adjust height for outline */
+            border: 5px solid #333; /* Outer geometric outline */
+            border-radius: 15px; /* Rounded corners for outer border */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
     </style>
+    {% load static %}  <!-- Load static files here -->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'playground/css/styles.css' %}">
+    <script src="{% static 'playground/js/scripts.js' %}"></script>
 </head>
 <body>
 
@@ -110,45 +150,70 @@
     </header>
 
     <nav>
-        <a href="http://127.0.0.1:8000">Home</a>
-        <a href="http://127.0.0.1:8000/User/">User Side</a>
-        <a href="http://127.0.0.1:8000/Manufacturer/">Manufacturer Side</a>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'user' %}">User Side</a>
+        <a href="{% url 'manufacturer' %}">Manufacturer Side</a>
         <a href="#">Contact Us</a>
     </nav>
 
-    {% for snack in snacks %}
-        <div class="cell"><img src= {{snack.image}} alt="Snack 1"><div class="name">{{snack.snack}}</div></div>
-    {% end for %}
-
     <div class="container">
-        <h1>Vending Machine Tracker</h1>
+        <h1>{{ machine.nickname }}</h1> <!-- Moved heading down -->
+        <p class="location">Location: {{ machine.location }}</p> <!-- Location styling -->
+
         <div class="vending-machine">
-            <div class="cell"><img src="snack1.jpg" alt="Snack 1"><div class="name">Snack 1</div></div>
-            <div class="cell"><img src="snack2.jpg" alt="Snack 2"><div class="name">Snack 2</div></div>
-            <div class="cell"><img src="snack3.jpg" alt="Snack 3"><div class="name">Snack 3</div></div>
-            <div class="cell"><img src="snack4.jpg" alt="Snack 4"><div class="name">Snack 4</div></div>
-            <div class="cell"><img src="snack5.jpg" alt="Snack 5"><div class="name">Snack 5</div></div>
-            <div class="cell"><img src="snack6.jpg" alt="Snack 6"><div class="name">Snack 6</div></div>
-            <div class="cell"><img src="snack7.jpg" alt="Snack 7"><div class="name">Snack 7</div></div>
-            <div class="cell"><img src="snack8.jpg" alt="Snack 8"><div class="name">Snack 8</div></div>
-            <div class="cell"><img src="snack9.jpg" alt="Snack 9"><div class="name">Snack 9</div></div>
-            <div class="cell"><img src="snack10.jpg" alt="Snack 10"><div class="name">Snack 10</div></div>
-            <div class="cell"><img src="snack11.jpg" alt="Snack 11"><div class="name">Snack 11</div></div>
-            <div class="cell"><img src="snack12.jpg" alt="Snack 12"><div class="name">Snack 12</div></div>
-            <div class="cell"><img src="snack13.jpg" alt="Snack 13"><div class="name">Snack 13</div></div>
-            <div class="cell"><img src="snack14.jpg" alt="Snack 14"><div class="name">Snack 14</div></div>
-            <div class="cell"><img src="snack15.jpg" alt="Snack 15"><div class="name">Snack 15</div></div>
-            <div class="cell"><img src="snack16.jpg" alt="Snack 16"><div class="name">Snack 16</div></div>
-            <div class="cell"><img src="snack17.jpg" alt="Snack 17"><div class="name">Snack 17</div></div>
-            <div class="cell"><img src="snack18.jpg" alt="Snack 18"><div class="name">Snack 18</div></div>
-            <div class="cell"><img src="snack19.jpg" alt="Snack 19"><div class="name">Snack 19</div></div>
-            <div class="cell"><img src="snack20.jpg" alt="Snack 20"><div class="name">Snack 20</div></div>
-        </div>
-    </div>
+            <!-- Loop to create cells for the snacks -->
+            {% for snack in snacks %}
+                <div class="cell" id="snack-{{ snack.id }}" data-id="{{ snack.id }}">
+                    {% if snack.image %}
+                        <img src="{{ snack.image.url }}" alt="{{ snack.snack }}">
+                    {% else %}
+                        <img src="{% static 'playground/images/default_image.jpg' %}" alt="Default Image">
+                    {% endif %}
+                    <div class="name">{{ snack.snack }}</div>
+                    <div class="amount">Amount: {{ snack.amount }}</div> <!-- Middle aligned -->
+                </div>
+            {% endfor %}
+
+            <!-- Fill remaining cells with empty placeholders -->
+            {% for i in empty_cells %}
+                <div class="cell"></div>
+            {% endfor %}
+        </div>        
 
     <footer>
         &copy; 2024 Vending Machine Tracker. All Rights Reserved.
     </footer>
 
+    <script>
+        // Establish WebSocket connection
+        const socket = new WebSocket('ws://localhost:8000/ws/vending_machine/');
+
+        // Function to update the snack amount
+        function updateSnackAmount(snackId, newAmount) {
+            const snackElement = document.getElementById(`snack-${snackId}`);
+            if (snackElement) {
+                snackElement.querySelector('.amount').innerText = `Amount: ${newAmount}`;
+            }
+        }
+
+        // Listen for messages from the WebSocket
+        socket.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            if (data.action === 'update') {
+                updateSnackAmount(data.snackId, data.newAmount);
+            }
+        };
+
+        // Handle errors
+        socket.onerror = function(error) {
+            console.error('WebSocket error:', error);
+        };
+
+        // Handle connection closure
+        socket.onclose = function(event) {
+            console.log('WebSocket connection closed:', event);
+        };
+    </script>
+    
 </body>
 </html>

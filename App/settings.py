@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from celery.schedules import crontab
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     'playground',
 ]
 
@@ -75,6 +78,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'App.wsgi.application'
+
+ASGI_APPLICATION = 'App.asgi.application'
 
 
 # Database
@@ -124,7 +129,24 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Directory where static files will be collected (used in production)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Additional static file directories (used in development)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'playground/static'),
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Celery Beat Schedule
+
+CELERY_BEAT_SCHEDULE = {
+    'decrement-snack-spots-every-5-seconds': {
+        'task': 'playground.tasks.decrement_snack_spots',
+        'schedule': 5.0,  # Every 5 seconds
+    },
+}

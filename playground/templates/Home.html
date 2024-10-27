@@ -88,8 +88,8 @@
 
     <nav>
         <a href="">Home</a>
-        <a href="User/">User Side</a>
-        <a href="Manufacturer/">Manufacturer Side</a>
+        <a href="{% url 'user' %}">User Side</a>
+        <a href="{% url 'manufacturer' %}">Manufacturer Side</a>
         <a href="#">Contact Us</a>
     </nav>
 
@@ -97,8 +97,8 @@
         <h1>Welcome to Vending Machine Stock Tracker</h1>
         <p>Your one-stop solution for tracking and managing vending machine inventory efficiently.</p>
         <div class="buttons">
-            <a href="User/">Go to User Side</a>
-            <a href="Manufacturer/">Go to Manufacturer Side</a>
+            <a href="{% url 'user' %}">Go to User Side</a>
+            <a href="{% url 'manufacturer' %}">Go to Manufacturer Side</a>
         </div>
     </div>
 

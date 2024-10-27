@@ -5,5 +5,4 @@ from django.contrib import admin
 from .models import VendingMachine, SnackSpot
 
 admin.site.register(VendingMachine)
-
 admin.site.register(SnackSpot)

@@ -2,15 +2,20 @@ For all future installations of the repository use the libraries listed:
     pip install pyarduino
     pip install pipenv
     pipenv install django
-    if that does not work
-        where pipenv - put it into path environments
-        pipenv lock
-        pipenv sync
+    pip install pillow
+    pip install celery
+    pip install celery redis
+    pip install channels
+    pipenv install daphne
 
-For normal virtual environment:
-    python -m venv venv
-    venv\Scripts\activate
-    Use in powershell if not working - Set-ExecutionPolicy RemoteSigned
+if that does not work:
+    where pipenv - put it into path environments
+    pipenv lock - to update the pipfile
 
 Use this to start the virtual environment:
-    python manage.py runserver
+
+    Make Sure to run this:
+        python manage.py migrate
+
+    Then to start the server run this:
+        python manage.py runserver

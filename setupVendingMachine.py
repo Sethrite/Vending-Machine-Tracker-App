@@ -4,7 +4,9 @@ from django.conf import settings
 
 # Step 1: Define the vending item options outside the function
 snack_options = ["Doritos", "Lays", "Funyuns"]
-electronic_options = ["USB Cable", "Battery Pack", "Charger"]
+electronic_options = ["Arduino", "LED's", "Resistors", "20 Ohm Heater", "Breadboard", "Accelerometer", "IR Sensor", 
+                      "Buttons", "Piezospeaker", "Photoresistor", "Diodes", "Bluetooth Module", "Pack of Wires", "Relay" 
+                      "RGB LED", "Thermistor", "Battery Pack", "Servo Motor", "Motor Driver Module", "UltraSonic Sensor"]
 drink_options = ["Coke", "Pepsi", "Sprite"]
 
 def reset_snackspot_sequence():

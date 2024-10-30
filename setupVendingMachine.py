@@ -4,7 +4,7 @@ from django.conf import settings
 
 # Step 1: Define the vending item options outside the function
 snack_options = ["Doritos", "Lays", "Funyuns"]
-electronic_options = ["Arduino", "LED's", "Resistors", "20 Ohm Heater", "Breadboard", "Accelerometer", "IR Sensor", 
+electronic_options = ["Arduino", "LED", "Resistors", "20 Ohm Heater", "Breadboard", "Accelerometer", "IR Sensor", 
                       "Buttons", "Piezospeaker", "Photoresistor", "Diodes", "Bluetooth Module", "Pack of Wires", "Relay" 
                       "RGB LED", "Thermistor", "Battery Pack", "Servo Motor", "Motor Driver Module", "UltraSonic Sensor", "Transistor"]
 drink_options = ["Coke", "Pepsi", "Sprite"]
@@ -43,7 +43,7 @@ def SetupVending():
 def vmObjects(vm):
     for row in range(4):
         for col in range(5):
-            SnackSpot.objects.create(machine=vm, snack=VendingItems(vm.nickname), amount=8, row=row, col=col)
+            SnackSpot.objects.create(machine=vm, snack=VendingItems(vm.nickname), image=f'static/playground/images/{VendingItems(vm.nickname)}.jpg',amount=8, row=row, col=col)
 
 def VendingItems(vending_name):
     global snack_options, electronic_options, drink_options

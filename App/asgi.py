@@ -4,12 +4,13 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
 from playground.routing import websocket_urlpatterns
 
-# Set the DJANGO_SETTINGS_MODULE environment variable
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'App.settings')
-
 # Get the default Django ASGI application
 from django.core.asgi import get_asgi_application
 django_asgi_app = get_asgi_application()
+
+
+# Set the DJANGO_SETTINGS_MODULE environment variable
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'App.settings')
 
 # Create the ASGI application
 application = ProtocolTypeRouter({

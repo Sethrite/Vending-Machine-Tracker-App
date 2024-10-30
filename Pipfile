@@ -4,10 +4,14 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+pyarduino = "*"
 django = "*"
-daphne = "*"
-channels = "*"
+pillow = "*"
 celery = "*"
+redis = "*"
+channels = "*"
+websockets = "*"
+daphne = "*"
 
 [dev-packages]
 

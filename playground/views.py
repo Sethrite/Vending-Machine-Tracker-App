@@ -25,8 +25,17 @@ def VendingLookU(request, id):
         'empty_cells': empty_cells  # Pass the empty cells to the template
     })
 
-def VendingLookM(request):
-    return render(request, 'VendingLookM.html')
+def VendingLookM(request, id):
+    print(f"Looking for VendingMachine with ID: {id}")  # Debugging output
+    vm = get_object_or_404(models.VendingMachine, id=id)
+    snacks = models.SnackSpot.objects.filter(machine=vm)
+    
+    empty_cells = [None] * (20-len(snacks))  # Calculate the number of empty cells
+    return render(request, 'VendingLookM.html', {
+        'snacks': snacks,
+        'machine': vm,
+        'empty_cells': empty_cells  # Pass the empty cells to the template
+    })
 
 def snack_data(request):
     snacks = SnackSpot.objects.all().values('snack', 'amount', 'machine__nickname')

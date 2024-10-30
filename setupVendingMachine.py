@@ -3,11 +3,14 @@ from django.db import connection
 from django.conf import settings
 
 # Step 1: Define the vending item options outside the function
-snack_options = ["Doritos", "Lays", "Funyuns"]
+snack_options = ["3 Musketeers", "Cheetos", "Chex Mix", "Clif Bar", "Cookies", "Doritos", "Fritos", "Fruit Snacks",
+                 "Hershy", "Kit Kat", "Lays Classic", "M&Ms", "Nature Valley", "Nutter Butter", "Pop Tarts", "Pretzels",
+                 "Reeces", "Skittles", "Snickers", "Twix",]
 electronic_options = ["Arduino", "LED", "Resistors", "20 Ohm Heater", "Breadboard", "Accelerometer", "IR Sensor", 
                       "Buttons", "Piezospeaker", "Photoresistor", "Diodes", "Bluetooth Module", "Pack of Wires", "Relay" 
                       "RGB LED", "Thermistor", "Battery Pack", "Servo Motor", "Motor Driver Module", "UltraSonic Sensor", "Transistor"]
-drink_options = ["Coke", "Pepsi", "Sprite"]
+drink_options = ["Aquafina", "Baja Blast", "Bang", "Caramel Frappuccino", "Coke", "Dasani", "Diet Coke", "Dr. Pepper", "Fanta", "Fiji",
+                 "Gatorade", "KickStart", "Mocha Frappuccino", "Monster", "Powerade", "Reign", "Root Beer", "Sprite", "Sweet Tea", "Vitamin Water",]
 
 def reset_snackspot_sequence():
     db_engine = settings.DATABASES['default']['ENGINE']

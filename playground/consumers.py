@@ -1,8 +1,7 @@
-# playground/consumers.py
-
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
-from .models import SnackSpot
+from .models import VendingMachine, SnackSpot
+from channels.db import database_sync_to_async
 
 class SnackConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -22,12 +21,12 @@ class SnackConsumer(AsyncWebsocketConsumer):
                 await self.update_and_broadcast(snack)
 
     async def update_and_broadcast(self, snack):
-        snack.save()
+        await snack.save()  # Make sure to await this if using async ORM
         await self.send(text_data=json.dumps({
             'snackId': snack.id,
             'newAmount': snack.amount
         }))
 
-    @staticmethod
-    async def get_snack(snack_id):
-        return await SnackSpot.objects.get(id=snack_id)
+    @database_sync_to_async
+    def get_snack(self, snack_id):
+        return SnackSpot.objects.get(id=snack_id)  # Get snack synchronously

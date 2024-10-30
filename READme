@@ -3,9 +3,13 @@ For all future installations of the repository use the libraries listed:
     pip install pipenv
     pipenv install django
     pip install pillow
+    python -m pip install Pillow
     pip install celery
+    pipenv install celery
     pip install celery redis
     pip install channels
+    pipenv install channels
+    pip install websockets
     pipenv install daphne
 
 if that does not work:

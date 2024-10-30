@@ -79,7 +79,32 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'App.wsgi.application'
 
+# Channels application
 ASGI_APPLICATION = 'App.asgi.application'
+
+# Channel layer configuration (if needed)
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Use appropriate backend
+    }
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
+
 
 
 # Database

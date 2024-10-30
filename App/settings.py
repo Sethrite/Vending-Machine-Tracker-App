@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'daphne',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'channels',

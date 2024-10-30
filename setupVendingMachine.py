@@ -7,7 +7,7 @@ snack_options = ["3 Musketeers", "Cheetos", "Chex Mix", "Clif Bar", "Cookies", "
                  "Hershy", "Kit Kat", "Lays Classic", "M&Ms", "Nature Valley", "Nutter Butter", "Pop Tarts", "Pretzels",
                  "Reeces", "Skittles", "Snickers", "Twix",]
 electronic_options = ["Arduino", "LED", "Resistors", "20 Ohm Heater", "Breadboard", "Accelerometer", "IR Sensor", 
-                      "Buttons", "Piezospeaker", "Photoresistor", "Diodes", "Bluetooth Module", "Pack of Wires", "Relay" 
+                      "Buttons", "Piezospeaker", "Photoresistor", "Diodes", "Bluetooth Module", "Pack of Wires", "Relay", 
                       "RGB LED", "Thermistor", "Battery Pack", "Servo Motor", "Motor Driver Module", "UltraSonic Sensor", "Transistor"]
 drink_options = ["Aquafina", "Baja Blast", "Bang", "Caramel Frappuccino", "Coke", "Dasani", "Diet Coke", "Dr. Pepper", "Fanta", "Fiji",
                  "Gatorade", "KickStart", "Mocha Frappuccino", "Monster", "Powerade", "Reign", "Root Beer", "Sprite", "Sweet Tea", "Vitamin Water",]
@@ -32,9 +32,9 @@ def SetupVending():
 
     # Create vending machines with specific IDs
     VendingMachine.objects.bulk_create([
-        VendingMachine(id=1, nickname="Vending Machine 1", location="Student Center"),
+        VendingMachine(id=1, nickname="Vending Machine 1", location="COB"),
         VendingMachine(id=2, nickname="Vending Machine 2", location="IESB"),
-        VendingMachine(id=3, nickname="Vending Machine 3", location="Bogard Hall"),
+        VendingMachine(id=3, nickname="Vending Machine 3", location="Wyly Tower"),
     ])
 
     # Reset the SnackSpot ID sequence
@@ -46,7 +46,8 @@ def SetupVending():
 def vmObjects(vm):
     for row in range(4):
         for col in range(5):
-            SnackSpot.objects.create(machine=vm, snack=VendingItems(vm.nickname), image=f'static/playground/images/{VendingItems(vm.nickname)}.jpg',amount=8, row=row, col=col)
+            name = VendingItems(vm.nickname)
+            SnackSpot.objects.create(machine=vm, snack=name, image=f'static/playground/images/{name}.jpg',amount=8, row=row, col=col)
 
 def VendingItems(vending_name):
     global snack_options, electronic_options, drink_options

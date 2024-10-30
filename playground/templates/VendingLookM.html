@@ -137,10 +137,24 @@
             border-radius: 15px; /* Rounded corners for outer border */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
+
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            .vending-machine {
+                width: 100%; /* Full width on small screens */
+                height: auto; /* Auto height to maintain aspect ratio */
+            }
+
+            .cell {
+                height: 100px; /* Adjust cell height for smaller screens */
+            }
+
+            .container h1 {
+                font-size: 2em; /* Smaller heading on small screens */
+            }
+        }
     </style>
     {% load static %}  <!-- Load static files here -->
-
-    <link rel="stylesheet" type="text/css" href="{% static 'playground/css/styles.css' %}">
     <script src="{% static 'playground/js/scripts.js' %}"></script>
 </head>
 <body>
@@ -185,8 +199,10 @@
     </footer>
 
     <script>
-        // Establish WebSocket connection
-        const socket = new WebSocket('ws://localhost:8000/ws/vending_machine/');
+        // Establish WebSocket connection using the machine ID
+        const machineId = {{ machine.id }}; // Get machine ID from Django context
+        let websocketUrl = `ws://localhost:8000/ws/User/vending-machine/${machineId}/`; // Use machineId in the URL
+        const socket = new WebSocket(websocketUrl);
 
         // Function to update the snack amount
         function updateSnackAmount(snackId, newAmount) {
@@ -199,7 +215,7 @@
         // Listen for messages from the WebSocket
         socket.onmessage = function(event) {
             const data = JSON.parse(event.data);
-            if (data.action === 'update') {
+            if (data.snackId && data.newAmount !== undefined) {
                 updateSnackAmount(data.snackId, data.newAmount);
             }
         };

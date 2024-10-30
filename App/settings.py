@@ -33,14 +33,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+
     'django.contrib.admin',
     'django.contrib.sessions',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'daphne',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'channels',
+    
     'playground',
 ]
 

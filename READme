@@ -3,7 +3,7 @@ For all future installations of the repository use the libraries listed:
     pip install pipenv
 
     # Use pipenv to install all necessary libraries
-    pipenv install pyarduino django pillow celery redis channels websockets daphne
+    pipenv install pyarduino django pillow celery redis channels websockets daphne channels_redis
 
 if that does not work:
     where pipenv - put it into path environments

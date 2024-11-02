@@ -139,7 +139,7 @@
         }
     </style>
     {% load static %}  <!-- Load static files here -->
-    <script src="{% static 'playground/js/scripts.js' %}"></script>
+    <script src="{% static 'playground/images' %}"></script>
 </head>
 <body>
 
@@ -185,7 +185,7 @@
     <script>
         // Establish WebSocket connection using the machine ID
         const machineId = {{ machine.id }}; // Get machine ID from Django context
-        let websocketUrl = `ws://localhost:8000/ws/User/vending-machine/${machineId}/`; // Use machineId in the URL
+        let websocketUrl = `ws://localhost:8001/ws/User/vending-machine/${machineId}/`; // Use machineId in the URL
         const socket = new WebSocket(websocketUrl);
 
         // Function to update the snack amount

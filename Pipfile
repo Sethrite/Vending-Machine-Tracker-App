@@ -13,6 +13,7 @@ channels = "*"
 websockets = "*"
 daphne = "*"
 uvicorn = "*"
+channels-redis = "*"
 
 [dev-packages]
 

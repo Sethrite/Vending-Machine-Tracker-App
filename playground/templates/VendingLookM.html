@@ -14,7 +14,7 @@
         }
 
         header {
-            background-color:  #d485ff ;
+            background-color: #d485ff;
             padding: 20px;
             text-align: center;
             font-size: 2em;
@@ -63,11 +63,10 @@
         }
 
         .vending-machine {
-            width: 400px; /* Fixed width for the vending machine */
-            height: 800px; /* Fixed height for the vending machine */
+            width: 550px; /* Adjusted width for the vending machine */
+            height: auto; /* Set height to auto to allow for buttons */
             display: grid;
             grid-template-columns: repeat(5, 1fr); /* 5 columns */
-            grid-template-rows: repeat(4, auto); /* 4 rows with auto height */
             gap: 10px; /* Space between items */
             padding: 20px;
             background-color: rgba(169, 169, 169, 0.5);
@@ -90,6 +89,8 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             overflow: hidden; /* Ensure images stay inside boundaries */
             height: 150px; /* Increased height for better spacing */
+            width: 80px; /* Set width to ensure button text is visible */
+            position: relative; /* For button positioning */
         }
 
         img {
@@ -113,6 +114,18 @@
             justify-content: center; /* Center align horizontally */
             height: 20px; /* Fixed height for uniformity */
             width: 100%; /* Full width */
+        }
+
+        .restock-button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-top: 10px; /* Space between cell and button */
+            width: 100%; /* Make button full width of the cell */
+            border-radius: 5px; /* Rounded corners for button */
+            font-size: 16px; /* Adjust font size for visibility */
         }
 
         footer {
@@ -147,6 +160,7 @@
 
             .cell {
                 height: 100px; /* Adjust cell height for smaller screens */
+                width: 60px; /* Adjusted cell width for smaller screens */
             }
 
             .container h1 {
@@ -155,81 +169,82 @@
         }
     </style>
     {% load static %}  <!-- Load static files here -->
-    <script src="{% static 'playground/js/scripts.js' %}"></script>
+    <script src="{% static 'playground/images' %}"></script>
 </head>
 <body>
 
-    <header>
-        Vending Machine Stock Tracker
-    </header>
+<header>
+    Vending Machine Stock Tracker
+</header>
 
-    <nav>
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'user' %}">User Side</a>
-        <a href="{% url 'manufacturer' %}">Manufacturer Side</a>
-        <a href="#">Contact Us</a>
-    </nav>
+<nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'user' %}">User Side</a>
+    <a href="{% url 'manufacturer' %}">Manufacturer Side</a>
+    <a href="#">Contact Us</a>
+</nav>
 
-    <div class="container">
-        <h1>{{ machine.nickname }}</h1> <!-- Moved heading down -->
-        <p class="location">Location: {{ machine.location }}</p> <!-- Location styling -->
+<div class="container">
+    <h1>{{ machine.nickname }}</h1> <!-- Moved heading down -->
+    <p class="location">Location: {{ machine.location }}</p> <!-- Location styling -->
 
-        <div class="vending-machine">
-            <!-- Loop to create cells for the snacks -->
-            {% for snack in snacks %}
-                <div class="cell" id="snack-{{ snack.id }}" data-id="{{ snack.id }}">
-                    {% if snack.image %}
-                        <img src="{{ snack.image.url }}" alt="{{ snack.snack }}">
-                    {% else %}
-                        <img src="{% static 'playground/images/default_image.jpg' %}" alt="Default Image">
-                    {% endif %}
-                    <div class="name">{{ snack.snack }}</div>
-                    <div class="amount">Amount: {{ snack.amount }}</div> <!-- Middle aligned -->
-                </div>
-            {% endfor %}
+    <div class="vending-machine">
+        <!-- Loop to create cells for the snacks -->
+        {% for snack in snacks %}
+            <div class="cell" id="snack-{{ snack.id }}" data-id="{{ snack.id }}">
+                {% if snack.image %}
+                    <img src="{{ snack.image.url }}" alt="{{ snack.snack }}">
+                {% else %}
+                    <img src="{% static 'playground/images/default_image.jpg' %}" alt="Default Image">
+                {% endif %}
+                <div class="name">{{ snack.snack }}</div>
+                <div class="amount">Amount: {{ snack.amount }}</div> <!-- Middle aligned -->
+                <button class="restock-button">Restock</button> <!-- Add Restock button here -->
+            </div>
+        {% endfor %}
 
-            <!-- Fill remaining cells with empty placeholders -->
-            {% for i in empty_cells %}
-                <div class="cell"></div>
-            {% endfor %}
-        </div>        
+        <!-- Fill remaining cells with empty placeholders -->
+        {% for i in empty_cells %}
+            <div class="cell"></div>
+        {% endfor %}
+    </div>
 
-    <footer>
-        &copy; 2024 Vending Machine Tracker. All Rights Reserved.
-    </footer>
+<footer>
+    &copy; 2024 Vending Machine Tracker. All Rights Reserved.
+</footer>
 
-    <script>
-        // Establish WebSocket connection using the machine ID
-        const machineId = {{ machine.id }}; // Get machine ID from Django context
-        let websocketUrl = `ws://localhost:8000/ws/User/vending-machine/${machineId}/`; // Use machineId in the URL
-        const socket = new WebSocket(websocketUrl);
+<script>
+    // Establish WebSocket connection using the machine ID
+    const machineId = {{ machine.id }}; // Get machine ID from Django context
+    let websocketUrl = `ws://localhost:8001/ws/User/vending-machine/${machineId}/`; // Use machineId in the URL
+    const socket = new WebSocket(websocketUrl);
 
-        // Function to update the snack amount
-        function updateSnackAmount(snackId, newAmount) {
-            const snackElement = document.getElementById(`snack-${snackId}`);
-            if (snackElement) {
-                snackElement.querySelector('.amount').innerText = `Amount: ${newAmount}`;
-            }
+    // Function to update the snack amount
+    function updateSnackAmount(snackId, newAmount) {
+        const snackElement = document.getElementById(`snack-${snackId}`);
+        if (snackElement) {
+            snackElement.querySelector('.amount').innerText = `Amount: ${newAmount}`;
         }
+    }
 
-        // Listen for messages from the WebSocket
-        socket.onmessage = function(event) {
-            const data = JSON.parse(event.data);
-            if (data.snackId && data.newAmount !== undefined) {
-                updateSnackAmount(data.snackId, data.newAmount);
-            }
-        };
+    // Listen for messages from the WebSocket
+    socket.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        if (data.snackId && data.newAmount !== undefined) {
+            updateSnackAmount(data.snackId, data.newAmount);
+        }
+    };
 
-        // Handle errors
-        socket.onerror = function(error) {
-            console.error('WebSocket error:', error);
-        };
+    // Handle errors
+    socket.onerror = function(error) {
+        console.error('WebSocket error:', error);
+    };
 
-        // Handle connection closure
-        socket.onclose = function(event) {
-            console.log('WebSocket connection closed:', event);
-        };
-    </script>
+    // Handle connection closure
+    socket.onclose = function(event) {
+        console.log('WebSocket connection closed:', event);
+    };
+</script>
     
 </body>
 </html>

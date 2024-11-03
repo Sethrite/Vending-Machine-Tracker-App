@@ -163,7 +163,7 @@
                     {% if snack.image %}
                         <img src="{{ snack.image.url }}" alt="{{ snack.snack }}">
                     {% else %}
-                        <img src="{% static 'playground/images/default_image.jpg' %}" alt="Default Image">
+                        <img src="{% static 'Vending/images/default_image.jpg' %}" alt="Default Image">
                     {% endif %}
                     <div class="name">{{ snack.snack }}</div>
                     <div class="amount">Amount: {{ snack.amount }}</div>
@@ -200,7 +200,7 @@
         }
 
         // Fetch data every second
-        setInterval(fetchUpdatedData, 10000);
+        setInterval(fetchUpdatedData, 1000);
     </script>
     
 </body>

@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from .models import VendingMachine, SnackSpot
+from django.views.decorators.csrf import csrf_exempt
+
 
 def Homepage(request):
     return render(request, 'Home.html')
@@ -63,3 +65,20 @@ def decrement_snack(request, snack_id, amount):
     snack.amount = max(0, snack.amount - amount)
     snack.save()
     return JsonResponse({'status': 'success', 'snack_id': snack_id, 'new_amount': snack.amount})
+
+def restock_snack(request, id):
+    # Debugging: print out the GET parameters to check what is received
+    print("GET Parameters:", request.GET)  # Log the GET parameters to the console
+
+    snack_id = request.GET.get('snack_id')  # Retrieve snack_id from query parameters
+
+    if snack_id:
+        # Reset the specified snack to an amount of 10
+        snack = get_object_or_404(SnackSpot, id=snack_id)
+        snack.amount = 10
+        snack.save()
+        return JsonResponse({'status': 'success', 'snack_id': snack.id, 'new_amount': snack.amount})
+    
+    return JsonResponse({'status': 'error', 'message': 'No snack_id provided.'}, status=400)
+
+

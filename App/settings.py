@@ -12,8 +12,6 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
-    'channels',
-    'channels_redis',
     'django.contrib.admin',
     'django.contrib.sessions',
     'django.contrib.auth',
@@ -54,17 +52,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'App.wsgi.application'
-ASGI_APPLICATION = 'App.asgi.application'
-
-# Channel layer configuration
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],  # Ensure this matches your Redis server configuration
-        },
-    },
-}
 
 LOGGING = {
     'version': 1,
@@ -122,14 +109,3 @@ STATICFILES_DIRS = [
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Celery configuration
-CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Use Redis as the broker
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Store results in Redis
-
-# Celery Beat Schedule
-CELERY_BEAT_SCHEDULE = {
-    'decrement-snack-spots-every-5-seconds': {
-        'task': 'playground.tasks.decrement_snack_spots',
-        'schedule': 5.0,  # Every 5 seconds
-    },
-}

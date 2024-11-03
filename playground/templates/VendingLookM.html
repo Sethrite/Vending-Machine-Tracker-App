@@ -169,7 +169,7 @@
         }
     </style>
     {% load static %}  <!-- Load static files here -->
-    <script src="{% static 'playground/images' %}"></script>
+    <script src="{% static 'Vending/images' %}"></script>
 </head>
 <body>
 
@@ -195,11 +195,11 @@
                 {% if snack.image %}
                     <img src="{{ snack.image.url }}" alt="{{ snack.snack }}">
                 {% else %}
-                    <img src="{% static 'playground/images/default_image.jpg' %}" alt="Default Image">
+                    <img src="{% static 'Vending/images/default_image.jpg' %}" alt="Default Image">
                 {% endif %}
                 <div class="name">{{ snack.snack }}</div>
                 <div class="amount">Amount: {{ snack.amount }}</div> <!-- Middle aligned -->
-                <button class="restock-button">Restock</button> <!-- Add Restock button here -->
+                <button class="restock-button" data-id = "{{ snack.id }}" onclick="handleRestock(event)">Restock</button> <!-- Add Restock button here -->
             </div>
         {% endfor %}
 
@@ -214,16 +214,13 @@
 </footer>
 
 <script>
-    // Get the vending machine ID from Django context
-    const machineId = {{ machine.id }};
+    const machineId = {{ machine.id }};  // Get the vending machine ID from Django context
 
-    // Function to fetch updated snack data from the server
     function fetchUpdatedData() {
         fetch(`/Manufacturer/vending-machine/${machineId}/`)
             .then(response => response.json())
             .then(data => {
                 data.forEach(snack => {
-                    // Update each snack's amount in the vending machine
                     const snackElement = document.getElementById(`snack-${snack.id}`);
                     if (snackElement) {
                         snackElement.querySelector('.amount').innerText = `Amount: ${snack.amount}`;
@@ -233,9 +230,29 @@
             .catch(error => console.error('Error fetching data:', error));
     }
 
-    // Fetch data every second
-    setInterval(fetchUpdatedData, 10000);
+    function handleRestock(event) { 
+        const snackId = event.target.getAttribute('data-id');  // Get snack_id from the button's data attribute
+        console.log("Snack ID:", snackId); // Add this line to check the snackId
+
+        fetch(`/Manufacturer/vending-machine/${machineId}/?snack_id=${snackId}`)
+            .then(response => response.json())
+            .then(data => {
+                const snackElement = document.getElementById(`snack-${snackId}`);
+                if (snackElement) {
+                    snackElement.querySelector('.amount').innerText = `Amount: ${data.new_amount}`;
+                }
+            })
+            .catch(error => console.error('Error restocking:', error));
+    }
+
+    // Fetch data every second to keep quantities updated
+    setInterval(fetchUpdatedData, 1000);
+
+    document.querySelectorAll('.restock-button').forEach(button => {
+        button.addEventListener('click', handleRestock);
+    });
 </script>
+
     
 </body>
 </html>

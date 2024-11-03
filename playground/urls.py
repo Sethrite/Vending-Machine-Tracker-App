@@ -13,7 +13,6 @@ urlpatterns = [
     path('Manufacturer/', views.Manufacturer, name='manufacturer'),
     path('Manufacturer/vending-machine/<int:id>/', views.VendingLookM, name='vending_lookupm'),
     path('Manufacturer/vending-machine/<int:id>/', views.snack_data, name='snack_data'),
-    path('Manufacturer/vending-machine/<int:id>/', views.increment_snack, name='increment'),
-    path('Manufacturer/vending-machine/<int:id>/', views.decrement_snack, name='decrement'),
+    path('Manufacturer/vending-machine/<int:id>/', views.restock_snack, name='restock'),
 
 ]

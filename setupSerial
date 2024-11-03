@@ -41,9 +41,15 @@ def main():
 
                 if data == '0':
                     # Trigger decrement for snack with ID 1 (you can change this ID)
-                    trigger_decrement(1)
+                    if prevdata == '1':
+                        trigger_decrement(1)
+                        print("Activated")
+                    else:
+                        print("NotActivated")
+                prevdata = data
 
-            time.sleep(0.1)  # Small delay to prevent high CPU usage
+            
+                time.sleep(0.1)  # Small delay to prevent high CPU usage
 
 if __name__ == "__main__":
     main()

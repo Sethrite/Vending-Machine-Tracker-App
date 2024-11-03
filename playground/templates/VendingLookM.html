@@ -214,36 +214,27 @@
 </footer>
 
 <script>
-    // Establish WebSocket connection using the machine ID
-    const machineId = {{ machine.id }}; // Get machine ID from Django context
-    let websocketUrl = `ws://localhost:8001/ws/User/vending-machine/${machineId}/`; // Use machineId in the URL
-    const socket = new WebSocket(websocketUrl);
+    // Get the vending machine ID from Django context
+    const machineId = {{ machine.id }};
 
-    // Function to update the snack amount
-    function updateSnackAmount(snackId, newAmount) {
-        const snackElement = document.getElementById(`snack-${snackId}`);
-        if (snackElement) {
-            snackElement.querySelector('.amount').innerText = `Amount: ${newAmount}`;
-        }
+    // Function to fetch updated snack data from the server
+    function fetchUpdatedData() {
+        fetch(`/Manufacturer/vending-machine/${machineId}/`)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(snack => {
+                    // Update each snack's amount in the vending machine
+                    const snackElement = document.getElementById(`snack-${snack.id}`);
+                    if (snackElement) {
+                        snackElement.querySelector('.amount').innerText = `Amount: ${snack.amount}`;
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
     }
 
-    // Listen for messages from the WebSocket
-    socket.onmessage = function(event) {
-        const data = JSON.parse(event.data);
-        if (data.snackId && data.newAmount !== undefined) {
-            updateSnackAmount(data.snackId, data.newAmount);
-        }
-    };
-
-    // Handle errors
-    socket.onerror = function(error) {
-        console.error('WebSocket error:', error);
-    };
-
-    // Handle connection closure
-    socket.onclose = function(event) {
-        console.log('WebSocket connection closed:', event);
-    };
+    // Fetch data every second
+    setInterval(fetchUpdatedData, 10000);
 </script>
     
 </body>

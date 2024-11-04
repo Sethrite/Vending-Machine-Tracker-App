@@ -199,7 +199,7 @@
                 {% endif %}
                 <div class="name">{{ snack.snack }}</div>
                 <div class="amount">Amount: {{ snack.amount }}</div> <!-- Middle aligned -->
-                <button class="restock-button" data-id = "{{ snack.id }}" onclick="handleRestock(event)">Restock</button> <!-- Add Restock button here -->
+                <button class="restock-button" data-id="{{ snack.id }}" onclick="handleRestock(event)">Restock</button>
             </div>
         {% endfor %}
 
@@ -208,6 +208,11 @@
             <div class="cell"></div>
         {% endfor %}
     </div>
+
+    <button id="reset-all-button" 
+        style="margin-top: 20px; background-color: red; color: white; padding: 10px 15px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; position: absolute; right: 20px; bottom: 20px;" 
+        onclick="handleResetAll(event)">Reset All Items</button>
+
 
 <footer>
     &copy; 2024 Vending Machine Tracker. All Rights Reserved.
@@ -231,26 +236,48 @@
     }
 
     function handleRestock(event) { 
-        const snackId = event.target.getAttribute('data-id');  // Get snack_id from the button's data attribute
-        console.log("Snack ID:", snackId); // Add this line to check the snackId
+    const snackId = event.target.getAttribute('data-id'); // Get snack_id from the button's data attribute
+    console.log('Restocking snack with ID:', snackId); // Debugging output
 
-        fetch(`/Manufacturer/vending-machine/${machineId}/?snack_id=${snackId}`)
-            .then(response => response.json())
-            .then(data => {
+    fetch(`/Manufacturer/vending-machine/${machineId}/restock/?snack_id=${snackId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
                 const snackElement = document.getElementById(`snack-${snackId}`);
                 if (snackElement) {
-                    snackElement.querySelector('.amount').innerText = `Amount: ${data.new_amount}`;
+                    snackElement.querySelector('.amount').innerText = `Amount: 10`; // Update amount displayed on UI
                 }
-            })
-            .catch(error => console.error('Error restocking:', error));
+                console.log(data.message); // Log success message
+            } else {
+                console.error('Error:', data.message); // Log error message
+            }
+        })
+        .catch(error => console.error('Error restocking:', error));
     }
 
-    // Fetch data every second to keep quantities updated
-    setInterval(fetchUpdatedData, 1000);
+    function handleResetAll() {
+        if (confirm('Are you sure you want to reset all items to 10?')) {
+            fetch(`/Manufacturer/vending-machine/reset/`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert(data.message);
+                    fetchUpdatedData(); // Fetch updated data to reflect changes
+                } else {
+                    console.error('Error:', data.message);
+                }
+            })
+            .catch(error => console.error('Error resetting snacks:', error));
+        }
+    }
 
     document.querySelectorAll('.restock-button').forEach(button => {
         button.addEventListener('click', handleRestock);
     });
+
+    // Fetch data every second to keep quantities updated
+    setInterval(fetchUpdatedData, 1000);
+
 </script>
 
     

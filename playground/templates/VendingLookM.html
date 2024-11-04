@@ -210,8 +210,8 @@
     </div>
 
     <button id="reset-all-button" 
-        style="margin-top: 20px; background-color: red; color: white; padding: 10px 15px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; position: absolute; right: 20px; bottom: 20px;" 
-        onclick="handleResetAll(event)">Reset All Items</button>
+    style="margin-top: 20px; background-color: red; color: white; padding: 10px 15px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; position: fixed; right: 20px; bottom: 100px;" 
+    onclick="handleResetAll(event)">Reset All Items</button>
 
 
 <footer>
@@ -273,6 +273,21 @@
 
     document.querySelectorAll('.restock-button').forEach(button => {
         button.addEventListener('click', handleRestock);
+    });
+
+    document.addEventListener('scroll', function() {
+        const button = document.getElementById('reset-all-button');
+        const footer = document.querySelector('footer');
+        const footerRect = footer.getBoundingClientRect(); // Get footer position
+        const buttonRect = button.getBoundingClientRect(); // Get button position
+        const offset = 30; // Distance before footer to stop the button
+
+        // Check if the button is too close to the footer
+        if (footerRect.top <= window.innerHeight - buttonRect.height - offset) {
+            button.style.bottom = `${footerRect.height + offset}px`; // Position the button just above the footer
+        } else {
+            button.style.bottom = '100px'; // Reset to original position when there's enough space
+        }
     });
 
     // Fetch data every second to keep quantities updated

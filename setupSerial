@@ -42,7 +42,7 @@ def main():
                 if data == '0':
                     # Trigger decrement for snack with ID 1 (you can change this ID)
                     if prevdata == '1':
-                        trigger_decrement(6)
+                        trigger_decrement(2)
                         print("Activated")
                     else:
                         print("NotActivated")

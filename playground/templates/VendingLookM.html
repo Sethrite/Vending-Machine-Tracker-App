@@ -280,7 +280,7 @@
         const footer = document.querySelector('footer');
         const footerRect = footer.getBoundingClientRect(); // Get footer position
         const buttonRect = button.getBoundingClientRect(); // Get button position
-        const offset = 30; // Distance before footer to stop the button
+        const offset = 50; // Distance before footer to stop the button
 
         // Check if the button is too close to the footer
         if (footerRect.top <= window.innerHeight - buttonRect.height - offset) {

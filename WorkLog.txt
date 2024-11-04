@@ -12,3 +12,10 @@ every couple of seconds.
 
 Mark used ChatGPT on 10/29/2024 to create the setup for the daphne library to make sure the quantity values are able to be
 manipulated and update on the website and to make sure they actually change the value.
+
+Mark used ChatGPT on 11/02/2024 to create the html code for the for loop in the manufactuerer page to create the restock buttons
+also asked ChatGPT to help with understanding how to connect the buttons using the snack ids and how they could access them to change
+the properties of the snacks to change the quantities.
+
+Mark used ChatGPT on 11/03/2024 to finish the buttons for the webpage and create dynamic changes in the website. Also stopped
+using websockets and thee daphne library to create the dynamic changes. Instead relied on polling and django commands.

@@ -1,3 +1,15 @@
+# Vending Maching Tracker App
+Created by ...
+
+#### Description
+...
+
+## Installation
+#### Requirements
+- python3.12
+- pip
+
+#### Steps
 For all future installations of the repository use the libraries listed:
     # Install pipenv if you haven't done so already
     pip install pipenv

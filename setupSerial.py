@@ -48,6 +48,3 @@ def main():
 
             
                 time.sleep(0.1)  # Small delay to prevent high CPU usage
-
-if __name__ == "__main__":
-    main()

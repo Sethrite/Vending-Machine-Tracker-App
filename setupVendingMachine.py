@@ -47,7 +47,7 @@ def vmObjects(vm):
     for row in range(4):
         for col in range(5):
             name = VendingItems(vm.nickname)
-            SnackSpot.objects.create(machine=vm, snack=name, image=f'playground/static/playground/images/{name}.jpg',amount=10, row=row, col=col)
+            SnackSpot.objects.create(machine=vm, snack=name, image=f'/static/playground/images/{name}.jpg',amount=10, row=row, col=col)
 
 def VendingItems(vending_name):
     global snack_options, electronic_options, drink_options

@@ -15,7 +15,9 @@ pipenv run python manage.py migrate
 
 # Setup for the database assets and relations, also setting up Serial Connections
 pipenv run python manage.py setup_vending
-python manage.py shell < setupSerial.py
+
+# If you have a serial connection through usb, uncomment this
+# pipenv run python manage.py setup_serial
 
 # Running the server, locally hosted on the computer.
 # Using 3 different terminals to run the different commands in the background

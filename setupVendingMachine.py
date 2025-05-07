@@ -74,6 +74,3 @@ def SnackPos():
         vmObjects(vm3)
     except VendingMachine.DoesNotExist:
         print("One or more VendingMachine instances not found. Run SetupVending() first.")
-
-# Call the setup function
-SetupVending()

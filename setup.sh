@@ -14,7 +14,7 @@ pipenv run python manage.py makemigrations
 pipenv run python manage.py migrate
 
 # Setup for the database assets and relations, also setting up Serial Connections
-python manage.py shell < setupVendingMachine.py
+pipenv run python manage.py setup_vending
 python manage.py shell < setupSerial.py
 
 # Running the server, locally hosted on the computer.

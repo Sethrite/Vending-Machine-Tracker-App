@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 from playground.models import SnackSpot
 
 class Command(BaseCommand):
-    help = 'Resets the amount of all snacks to 10'
+    help = 'Resets all snacks to an amount of 10'
 
     def handle(self, *args, **options):
         # Query all SnackSpot objects

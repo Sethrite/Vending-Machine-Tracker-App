@@ -3,7 +3,7 @@ from django.utils import timezone
 from playground.models import SnackSpot
 
 class Command(BaseCommand):
-    help = 'Decrements the amount of a specific snack by 1, given its ID'
+    help = 'Decrements the amount of a specific snack by 1, given its ID as an argument'
 
     def add_arguments(self, parser):
         # Add an argument to specify the snack ID

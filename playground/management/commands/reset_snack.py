@@ -4,7 +4,7 @@ from playground.models import SnackSpot
 from django.core.exceptions import ObjectDoesNotExist
 
 class Command(BaseCommand):
-    help = 'Resets the amount of a specific snack to 10'
+    help = 'Resets the amount of a specific snack to 10, using its ID as an argument'
 
     def add_arguments(self, parser):
         parser.add_argument('snack_id', type=int, help='ID of the snack to reset')

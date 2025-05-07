@@ -6,9 +6,6 @@ pip install pipenv
 # Download dependencies
 pipenv install pyarduino django pillow
 
-# Setup virtual environment
-pipenv shell
-
 # Set up Django settings
 export DJANGO_SETTINGS_MODULE=App.settings
 
@@ -24,6 +21,8 @@ sleep 3
 
 echo "Decreasing snack counts periodically..."
 pipenv run python manage.py decrement_snacks &
-sleep 3
+sleep 2
 
-pipenv run python manage.py demonstration &
+# Open the web app in the default browser
+echo "Opening browser..."
+powershell.exe -Command "Start-Process 'http://127.0.0.1:8000/'"

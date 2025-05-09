@@ -19,6 +19,17 @@ Windows: Go to the file location and double-click the "Vending Machine Tracker" 
 
 ![Picture of the file](https://files.catbox.moe/ttc657.png)
 
+Other OS's: Go to the file location and run the setup.sh file, either through the terminal or by double-clicking it
+* Copy the following into the terminal:
+```
+./setup.sh
+```
+
+* Note: If the file does not work, make sure setup.sh is executable.
+```
+sudo chmod +x setup.sh
+```
+
 #### Stop: 
 To terminate the process, press Ctrl-C twice in the terminal
 
